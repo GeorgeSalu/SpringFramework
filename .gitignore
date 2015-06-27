@@ -1,0 +1,15 @@
+#################
+## Eclipse
+#################
+*.class
+WebContent/WEB-INF/classes/
+.metadata
+target/
+.DS_Store
+bin
+build
+#################
+## Utilização do Jboss Jorge
+#################
+forge
+forge.bat
