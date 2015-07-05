@@ -31,7 +31,7 @@ public class ProductsController {
 	public String save(Products product){
 		productDAO.save(product);
 		System.out.println("Cadastrando o produtos"+product);
-		return "products/ok";
+		return "redirect:produtos";
 	}
 	
 	@RequestMapping("/form")
