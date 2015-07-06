@@ -44,7 +44,7 @@ public class ProductsController {
 			RedirectAttributes redirectAttributes){
 		
 		if(bindingResult.hasErrors()){
-			return form();
+			return form(product);
 		}
 		
 		productDAO.save(product);
@@ -55,7 +55,7 @@ public class ProductsController {
 	}
 	
 	@RequestMapping("/form")
-	public ModelAndView form(){
+	public ModelAndView form(Products products){
 		ModelAndView modelAndView = new ModelAndView("products/form");
 		modelAndView.addObject("types", BookType.values());
 		return modelAndView;

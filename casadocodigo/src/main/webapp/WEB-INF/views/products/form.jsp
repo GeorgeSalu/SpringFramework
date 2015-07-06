@@ -1,4 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +8,17 @@
     <title>Cadastro de produtos</title>
 </head>
 <body>
-    <form method="post" action="/casadocodigo/produtos">
+    <!-- <form method="post" action="/casadocodigo/produtos"> -->
+      <form:form action="/casadocodigo/produtos" method="post" commandName="products">
         <div>
             <label for="title">Titulo</label>
-            <input type="text" name="title" id="title" />
+            <form:input path="title"/>
+            <form:errors path="title"></form:errors>
         </div>
         <div>
             <label for="description">Descricao</label>
-            <textarea rows="10" cols="20" name="description" id="description"></textarea>
+			<form:textarea path="description" rows="10" cols="20"/>
+            <form:errors path="description"></form:errors>
         </div>
         
         <c:forEach items="${types}" var="bookType" varStatus="status">
@@ -27,6 +32,7 @@
         <div>
             <input type="submit" value="Enviar" />
         </div>
-    </form>
+      </form:form>
+    <!-- </form> -->
 </body>
 </html>
