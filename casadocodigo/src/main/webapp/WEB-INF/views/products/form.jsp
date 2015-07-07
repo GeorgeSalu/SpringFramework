@@ -15,10 +15,17 @@
             <form:input path="title"/>
             <form:errors path="title"></form:errors>
         </div>
+        
         <div>
             <label for="description">Descricao</label>
 			<form:textarea path="description" rows="10" cols="20"/>
             <form:errors path="description"></form:errors>
+        </div>
+        
+        <div>
+        	<label for="releaseDate">Data de Lancamento</label>
+			<form:input path="releaseDate" type="date"/>
+        	<form:errors path="releaseDate"></form:errors>
         </div>
         
         <c:forEach items="${types}" var="bookType" varStatus="status">
