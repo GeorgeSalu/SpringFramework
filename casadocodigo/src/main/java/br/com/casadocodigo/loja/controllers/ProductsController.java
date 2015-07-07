@@ -23,10 +23,11 @@ import br.com.casadocodigo.loja.validation.ProductValidator;
 @RequestMapping("/produtos")
 public class ProductsController {
 
+	/*
 	@InitBinder
 	protected void initBinder(WebDataBinder binder){
 		binder.setValidator(new ProductValidator());
-	}
+	}*/
 	
 	@Autowired
 	private ProductDAO productDAO; 
