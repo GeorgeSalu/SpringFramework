@@ -1,5 +1,6 @@
 package br.com.casadocodigo.loja.controllers;
 
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,6 +34,9 @@ public class ProductsController {
 	@Autowired
 	private ProductDAO productDAO; 
 	
+	@Autowired
+	private FileSaver fileSaver;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("products/list");
@@ -40,17 +45,24 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(@Valid Products product,
+	public ModelAndView save(MultipartFile summary,@Valid Products product,
 			BindingResult bindingResult,
 			RedirectAttributes redirectAttributes){
+		
 		
 		if(bindingResult.hasErrors()){
 			return form(product);
 		}
+
+		
+		String webPath = fileSaver.write("WEB-INF/imagens", summary);
+		System.out.println(webPath);
+		product.setSummaryPath(webPath);
+		
 		
 		productDAO.save(product);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
-		System.out.println("Cadastrando o produtos"+product);
+
 		return new ModelAndView("redirect:produtos");
 	
 	}

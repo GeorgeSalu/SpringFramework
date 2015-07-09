@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- <form method="post" action="/casadocodigo/produtos"> -->
-      <form:form action="/casadocodigo/produtos" method="post" commandName="products">
+      <form:form action="/casadocodigo/produtos" method="post" commandName="products" enctype="multipart/form-data">
         <div>
             <label for="title">Titulo</label>
             <form:input path="title"/>
@@ -26,6 +26,12 @@
         	<label for="releaseDate">Data de Lancamento</label>
 			<form:input path="releaseDate" type="date"/>
         	<form:errors path="releaseDate"></form:errors>
+        </div>
+        
+        <div>
+        	<label for="summary">Sumario do livro</label>
+        	<input type="file" name="summary">
+        	<form:errors path="summaryPath"></form:errors>
         </div>
         
         <c:forEach items="${types}" var="bookType" varStatus="status">

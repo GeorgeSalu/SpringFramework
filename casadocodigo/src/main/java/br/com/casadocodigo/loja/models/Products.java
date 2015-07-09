@@ -32,6 +32,8 @@ public class Products {
 	@DateTimeFormat(iso=ISO.DATE)
 	private Calendar releaseDate;
 
+	private String summaryPath;
+	
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
 	
@@ -67,6 +69,12 @@ public class Products {
 		this.releaseDate = releaseDate;
 	}
 
-	
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
 	
 }
