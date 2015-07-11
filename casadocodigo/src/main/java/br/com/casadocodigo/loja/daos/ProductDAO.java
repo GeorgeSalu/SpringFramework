@@ -20,8 +20,14 @@ public class ProductDAO {
 	}
 
 	public List<Products> list() {
-		return manager.createQuery("select distinct(p) from Products p ",
+		return manager.createQuery(
+				"select p from Products p",
 				Products.class).getResultList();
+	}
+
+	public Products find(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

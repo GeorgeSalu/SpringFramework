@@ -1,5 +1,7 @@
 package br.com.casadocodigo.loja.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +43,10 @@ public class ProductsController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("products/list");
+		
+		List<Products> produtos = productDAO.list();
+		
+		System.out.println(produtos.size());
 		modelAndView.addObject("products",productDAO.list());
 		return modelAndView;
 	}
@@ -71,6 +78,14 @@ public class ProductsController {
 	public ModelAndView form(Products products){
 		ModelAndView modelAndView = new ModelAndView("products/form");
 		modelAndView.addObject("types", BookType.values());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/{id}")
+	public ModelAndView show(@PathVariable("id") Integer id){
+		ModelAndView modelAndView = new ModelAndView("products/show");
+		Products products = productDAO.find(id);
+		modelAndView.addObject("product",products);
 		return modelAndView;
 	}
 	

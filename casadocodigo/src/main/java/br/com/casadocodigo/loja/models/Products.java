@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Products {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotBlank
 	private String title;
@@ -28,15 +28,15 @@ public class Products {
 	@NotBlank
 	private String description;
 	private int pages;
-	
-	@DateTimeFormat(iso=ISO.DATE)
+
+	@DateTimeFormat(iso = ISO.DATE)
 	private Calendar releaseDate;
 
 	private String summaryPath;
-	
+
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -76,5 +76,21 @@ public class Products {
 	public void setSummaryPath(String summaryPath) {
 		this.summaryPath = summaryPath;
 	}
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
+	}
+
 }
