@@ -1,9 +1,12 @@
-#################
+﻿#################
 ## Eclipse
 #################
 *.class
 WebContent/WEB-INF/classes/
 .metadata
+.classpath
+.settings
+.project
 target/
 .DS_Store
 bin
