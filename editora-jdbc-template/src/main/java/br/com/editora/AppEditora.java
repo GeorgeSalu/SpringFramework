@@ -1,5 +1,8 @@
 package br.com.editora;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,9 +31,22 @@ public class AppEditora implements CommandLineRunner{
 
 		System.out.println("--------------------------------");
 		
-		inserEditora();
+		//inserEditora();
+		findAllEditoras();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findAllEditoras() {
+		
+		List<Editora> editoras = new ArrayList<Editora>();
+		
+		editoras = editoraDao.findAll();
+		
+		for(Editora ed: editoras){
+			System.out.println(ed.toString());
+		}
+		
 	}
 
 	private void inserEditora() {

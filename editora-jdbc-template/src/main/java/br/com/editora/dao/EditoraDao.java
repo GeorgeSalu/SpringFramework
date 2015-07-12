@@ -1,6 +1,8 @@
 package br.com.editora.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import br.com.editora.dao.mapper.EditoraMapper;
 import br.com.editora.entity.Editora;
 
 @Repository
@@ -16,6 +19,14 @@ public class EditoraDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	
+	public List<Editora> findAll(){
+		
+		String sql = "SELECT * FROM EDITORAS";
+		
+		return jdbcTemplate.query(sql, new EditoraMapper());
+		
+	}
 	
 	public Editora add(Editora editora){
 		
