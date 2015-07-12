@@ -7,10 +7,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 import br.com.editora.dao.EditoraDao;
+import br.com.editora.entity.Editora;
 
 @EnableAutoConfiguration
 @ComponentScan
 public class AppEditora implements CommandLineRunner{
+	
+	@Autowired
+	private EditoraDao editoraDao;
 	
 	public static void main(String[] args) {
 
@@ -22,8 +26,25 @@ public class AppEditora implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 
-		System.out.println("Start Spring Boot");
+		System.out.println("--------------------------------");
 		
+		inserEditora();
+		
+		System.out.println("--------------------------------");
+	}
+
+	private void inserEditora() {
+		
+		Editora editora = new Editora();
+		editora.setRazaoSocial("Editora rio da Ltda.");
+		editora.setCidade("rio de janeiro");
+		editora.setEmail("contato@com.br");
+		
+		//int id = editoraDao.save(editora);
+		
+		editora = editoraDao.add(editora);
+		
+		System.out.println(editora.toString());
 	}
 	
 }
