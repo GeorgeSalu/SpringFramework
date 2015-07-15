@@ -32,9 +32,38 @@ public class AppEditora implements CommandLineRunner{
 		System.out.println("--------------------------------");
 		
 		//inserEditora();
-		findAllEditoras();
+		//findAllEditoras();
+		//findByIdEditoras();
+		//finByCidadesEditoras();
+		findByRazaoSocialEditora();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findByRazaoSocialEditora() {
+		
+		List<Editora> editoras = editoraDao.findByRazaoSocial("rio");
+		
+		for(Editora editora: editoras){
+			System.out.println(editora.toString());
+		}
+		
+	}
+
+	private void finByCidadesEditoras() {
+		
+		List<Editora> editoras = editoraDao.findByCidade("Manaus", "rio de janeiro");
+		
+		for(Editora editora : editoras){
+			System.out.println(editora.toString());
+		}
+	}
+
+	private void findByIdEditoras() {
+		
+		Editora editora = editoraDao.findById(1);
+		System.out.println(editora.toString());
+		
 	}
 
 	private void findAllEditoras() {
