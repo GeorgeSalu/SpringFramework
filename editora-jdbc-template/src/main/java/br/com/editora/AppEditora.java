@@ -31,11 +31,11 @@ public class AppEditora implements CommandLineRunner{
 
 		System.out.println("--------------------------------");
 		
-		//inserEditora();
+		inserEditora();
 		//findAllEditoras();
 		//findByIdEditoras();
 		//finByCidadesEditoras();
-		findByRazaoSocialEditora();
+		//findByRazaoSocialEditora();
 		
 		System.out.println("--------------------------------");
 	}
@@ -81,15 +81,15 @@ public class AppEditora implements CommandLineRunner{
 	private void inserEditora() {
 		
 		Editora editora = new Editora();
-		editora.setRazaoSocial("Editora rio da Ltda.");
-		editora.setCidade("rio de janeiro");
-		editora.setEmail("contato@com.br");
+		editora.setRazaoSocial("Salgado filho.");
+		editora.setCidade("porto alegre");
+		editora.setEmail("contato@gavea.com.br");
 		
-		//int id = editoraDao.save(editora);
+		int ok = editoraDao.insert(editora);
 		
-		editora = editoraDao.add(editora);
+		//editora = editoraDao.add(editora);
 		
-		System.out.println(editora.toString());
+		System.out.println("ok = "+ok);
 	}
 	
 }

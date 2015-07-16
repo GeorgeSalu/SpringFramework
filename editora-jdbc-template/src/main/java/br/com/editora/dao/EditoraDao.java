@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -14,8 +16,13 @@ import br.com.editora.dao.mapper.EditoraMapper;
 import br.com.editora.entity.Editora;
 
 @Repository
+//@PropertySource("classpath:application.properties")
+@PropertySource("classpath:sql/editora.xml")
 public class EditoraDao {
 
+	@Value("${sql.insert}")
+	private String SQL_INSERT;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -82,7 +89,7 @@ public class EditoraDao {
 		
 		String sql = "INSERT INTO EDITORAS (RAZAO_SOCIAL,CIDADE,EMAIL) VALUES (?,?,?)";
 		
-		return jdbcTemplate.update(sql,
+		return jdbcTemplate.update(SQL_INSERT,
 					editora.getRazaoSocial(),
 					editora.getCidade(),
 					editora.getEmail());
