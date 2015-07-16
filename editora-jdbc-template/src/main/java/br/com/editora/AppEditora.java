@@ -31,13 +31,35 @@ public class AppEditora implements CommandLineRunner{
 
 		System.out.println("--------------------------------");
 		
-		inserEditora();
+		//inserEditora();
 		//findAllEditoras();
 		//findByIdEditoras();
 		//finByCidadesEditoras();
 		//findByRazaoSocialEditora();
+		//countEditora();
+		findEmailByIdEditora();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findEmailByIdEditora() {
+
+		String email = editoraDao.findByEmailId(2);
+		System.out.println("email -> "+email);
+			
+		List<String> emails = editoraDao.findEmails();
+		
+		for(String s : emails){
+			System.out.println("Email "+s);
+		}
+		
+	}
+
+	private void countEditora() {
+
+		int count = editoraDao.count();
+		System.out.println("COUNT -> "+count);
+		
 	}
 
 	private void findByRazaoSocialEditora() {

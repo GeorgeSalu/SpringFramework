@@ -25,4 +25,16 @@
 		SELECT * FROM EDITORAS
 	</entry>
 	
+	<entry key="sql.count">
+		SELECT COUNT(*) FROM EDITORAS
+	</entry>
+	
+	<entry key="sql.findEmailBy.id">
+		SELECT EMAIL FROM EDITORAS WHERE ID_EDITORA = ?
+	</entry>
+	
+	<entry key="sql.findEmails">
+		SELECT EMAIL FROM EDITORAS
+	</entry>
+	
 </properties>

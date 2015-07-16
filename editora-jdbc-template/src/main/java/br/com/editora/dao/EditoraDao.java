@@ -22,10 +22,34 @@ public class EditoraDao {
 
 	@Value("${sql.insert}")
 	private String SQL_INSERT;
+	@Value("${sql.count}")
+	private String SQL_COUNT;
+	@Value("${sql.findEmailBy.id}")
+	private String SQL_FIND_EMAIL_BY_ID;
+	@Value("${sql.findEmails}")
+	private String SQL_FIND_EMAILS;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	public List<String> findEmails(){
+		
+		return jdbcTemplate.queryForList(SQL_FIND_EMAILS,String.class);
+		
+	}
+	
+	public String findByEmailId(int id){
+		
+		return jdbcTemplate.queryForObject(SQL_FIND_EMAIL_BY_ID, String.class,id);
+		
+	}
+	
+	public int count(){
+		
+		return jdbcTemplate.queryForObject(SQL_COUNT, Integer.class);
+		
+	}
+	
 	
 	public List<Editora> findByRazaoSocial(String rz){
 		
