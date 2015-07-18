@@ -1,5 +1,7 @@
 package br.com.editora.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -28,10 +31,35 @@ public class EditoraDao {
 	private String SQL_FIND_EMAIL_BY_ID;
 	@Value("${sql.findEmails}")
 	private String SQL_FIND_EMAILS;
+	@Value("${sql.findCidadeAndEmailBy.id}")
+	private String SQL_FIND_CIDADE_AND_EMAIL_BY_ID;
+	
+	
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	public List<String> findCidadeAndEmailById(int id){
+		
+		return jdbcTemplate.queryForObject(
+				SQL_FIND_CIDADE_AND_EMAIL_BY_ID, 
+				new Integer[] {id},
+				new RowMapper<List<String>>(){
+
+					@Override
+					public List<String> mapRow(ResultSet rs, int rowNum)
+							throws SQLException {
+
+						String cidade = rs.getString("CIDADE");
+						String email = rs.getString("EMAIL");
+						
+						return Arrays.asList(cidade,email);
+					}
+					
+				});
+		
+	}
+	
 	public List<String> findEmails(){
 		
 		return jdbcTemplate.queryForList(SQL_FIND_EMAILS,String.class);

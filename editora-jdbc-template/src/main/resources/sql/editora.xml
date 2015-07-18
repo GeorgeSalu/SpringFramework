@@ -37,4 +37,8 @@
 		SELECT EMAIL FROM EDITORAS
 	</entry>
 	
+	<entry key="sql.findCidadeAndEmailBy.id">
+		SELECT CIDADE,EMAIL FROM EDITORAS WHERE ID_EDITORA = ?
+	</entry>
+	
 </properties>

@@ -37,9 +37,20 @@ public class AppEditora implements CommandLineRunner{
 		//finByCidadesEditoras();
 		//findByRazaoSocialEditora();
 		//countEditora();
-		findEmailByIdEditora();
+		//findEmailByIdEditora();
+		findCidadeAndEmailByIdEditora();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findCidadeAndEmailByIdEditora() {
+		
+		List<String> lista = editoraDao.findCidadeAndEmailById(3);
+		
+		for(String s: lista){
+			System.out.println(s);
+		}
+		
 	}
 
 	private void findEmailByIdEditora() {
