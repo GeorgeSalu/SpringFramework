@@ -38,9 +38,40 @@ public class AppEditora implements CommandLineRunner{
 		//findByRazaoSocialEditora();
 		//countEditora();
 		//findEmailByIdEditora();
-		findCidadeAndEmailByIdEditora();
+		//findCidadeAndEmailByIdEditora();
+		//updateEditora();
+		deleteEditora();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void deleteEditora() {
+		
+		int ok = editoraDao.delete(4);
+		
+		if(ok == 1){
+			System.out.println("operacao realizada com sucesso");
+		}else{
+			System.out.println("Operacao nao realizada");
+		}
+		
+	}
+
+	private void updateEditora() {
+
+		Editora editora = editoraDao.findById(2);
+		System.out.println(editora.toString());
+		
+		editora.setRazaoSocial("Editora de curitiba");
+		int ok = editoraDao.update(editora);
+
+		if(ok == 1){
+			Editora ed = editoraDao.findById(2);
+			System.out.println(ed.toString());
+		}else{
+			System.out.println("operacao nao realizada");
+		}
+		
 	}
 
 	private void findCidadeAndEmailByIdEditora() {
