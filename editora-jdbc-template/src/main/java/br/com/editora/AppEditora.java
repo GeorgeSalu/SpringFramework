@@ -9,8 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
+import br.com.editora.dao.AutorDao;
 import br.com.editora.dao.EditoraDao;
 import br.com.editora.dao.LivroDao;
+import br.com.editora.entity.Autor;
 import br.com.editora.entity.Editora;
 
 @EnableAutoConfiguration
@@ -21,6 +23,8 @@ public class AppEditora implements CommandLineRunner{
 	private EditoraDao editoraDao;
 	@Autowired
 	private LivroDao livroDao;
+	@Autowired
+	private AutorDao autorDao;
 	
 	public static void main(String[] args) {
 
@@ -44,9 +48,28 @@ public class AppEditora implements CommandLineRunner{
 		//findCidadeAndEmailByIdEditora();
 		//updateEditora();
 		//deleteEditora();
-		execute();
+		//execute();
+		insertAutor();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void insertAutor() {
+		
+		Editora editora = editoraDao.findById(1);
+		Autor autor = new Autor();
+		autor.setNome("Aline da silva");
+		autor.setEmail("aline@gmail.com");
+		autor.setEditora(editora);
+		
+		if(autor.getId() == null){
+			autor = autorDao.save(autor);
+		}
+		
+		if(autor.getId() != null){
+			System.out.println(autor.toString());
+		}
+		
 	}
 
 	private void execute() {
