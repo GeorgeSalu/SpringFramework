@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 import br.com.editora.dao.EditoraDao;
+import br.com.editora.dao.LivroDao;
 import br.com.editora.entity.Editora;
 
 @EnableAutoConfiguration
@@ -18,6 +19,8 @@ public class AppEditora implements CommandLineRunner{
 	
 	@Autowired
 	private EditoraDao editoraDao;
+	@Autowired
+	private LivroDao livroDao;
 	
 	public static void main(String[] args) {
 
@@ -40,9 +43,16 @@ public class AppEditora implements CommandLineRunner{
 		//findEmailByIdEditora();
 		//findCidadeAndEmailByIdEditora();
 		//updateEditora();
-		deleteEditora();
+		//deleteEditora();
+		execute();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void execute() {
+
+	 livroDao.insert();
+	 
 	}
 
 	private void deleteEditora() {
