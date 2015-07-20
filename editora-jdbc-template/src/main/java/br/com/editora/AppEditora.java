@@ -49,17 +49,28 @@ public class AppEditora implements CommandLineRunner{
 		//updateEditora();
 		//deleteEditora();
 		//execute();
-		insertAutor();
+		//insertAutor();
+		findAll();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findAll() {
+		
+		List<Autor> autors = autorDao.findAll();
+		
+		for(Autor autor : autors){
+			System.out.println(autor.toString());
+		}
+		
 	}
 
 	private void insertAutor() {
 		
 		Editora editora = editoraDao.findById(1);
 		Autor autor = new Autor();
-		autor.setNome("Aline da silva");
-		autor.setEmail("aline@gmail.com");
+		autor.setNome("Nazare salu");
+		autor.setEmail("nazare@gmail.com");
 		autor.setEditora(editora);
 		
 		if(autor.getId() == null){
