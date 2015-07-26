@@ -46,11 +46,11 @@ public class EditoraDao {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	public Editora findEditoraWithAutores(int idEditora){
+	public Editora findEditoraWithAutores(int idEditora,int page, int size){
 		
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(
 					SQL_FIND_EDITORA_WITH_AUTORES,
-					idEditora);
+					idEditora,page * size,size);
 		
 		Editora editora = null;
 		List<Autor> autores = new ArrayList<Autor>();

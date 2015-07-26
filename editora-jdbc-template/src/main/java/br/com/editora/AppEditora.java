@@ -62,7 +62,7 @@ public class AppEditora implements CommandLineRunner{
 
 	private void findEditoraWithAutores() {
 
-		Editora editora = editoraDao.findEditoraWithAutores(2);
+		Editora editora = editoraDao.findEditoraWithAutores(2,0,2);
 		
 		System.out.println(
 				editora.getId() + "," +
@@ -70,7 +70,32 @@ public class AppEditora implements CommandLineRunner{
 				editora.getCidade() + "," +
 				editora.getEmail()
 				);
+
+		editora = editoraDao.findEditoraWithAutores(2,1,2);
+
 		
+		for (Autor autor : editora.getAutores()){
+			System.out.println(
+					autor.getId()+","+
+					autor.getNome()+","+
+					autor.getEmail());
+		}
+		
+		System.out.println("----------------------------------------------");
+		
+		editora = editoraDao.findEditoraWithAutores(2,2,2);
+
+		for (Autor autor : editora.getAutores()){
+			System.out.println(
+					autor.getId()+","+
+					autor.getNome()+","+
+					autor.getEmail());
+		}
+
+		System.out.println("----------------------------------------------");
+		
+		editora = editoraDao.findEditoraWithAutores(2,3,2);
+
 		for (Autor autor : editora.getAutores()){
 			System.out.println(
 					autor.getId()+","+
@@ -136,8 +161,8 @@ public class AppEditora implements CommandLineRunner{
 		
 		Editora editora = editoraDao.findById(2);
 		Autor autor = new Autor();
-		autor.setNome("salu figueira");
-		autor.setEmail("salu@gmail.com");
+		autor.setNome("gustavo figueira");
+		autor.setEmail("gustavo@gmail.com");
 		autor.setEditora(editora);
 		
 		if(autor.getId() == null){
