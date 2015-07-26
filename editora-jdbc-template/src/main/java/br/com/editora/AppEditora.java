@@ -53,9 +53,31 @@ public class AppEditora implements CommandLineRunner{
 		//findAll();
 		//findAutoresByEditora();
 		//updateAutor();
-		deleteAutor();
+		//deleteAutor();
+		findEditoraWithAutores();
+		
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findEditoraWithAutores() {
+
+		Editora editora = editoraDao.findEditoraWithAutores(2);
+		
+		System.out.println(
+				editora.getId() + "," +
+				editora.getRazaoSocial() + "," +
+				editora.getCidade() + "," +
+				editora.getEmail()
+				);
+		
+		for (Autor autor : editora.getAutores()){
+			System.out.println(
+					autor.getId()+","+
+					autor.getNome()+","+
+					autor.getEmail());
+		}
+		
 	}
 
 	private void deleteAutor() {
@@ -112,10 +134,10 @@ public class AppEditora implements CommandLineRunner{
 
 	private void insertAutor() {
 		
-		Editora editora = editoraDao.findById(1);
+		Editora editora = editoraDao.findById(2);
 		Autor autor = new Autor();
-		autor.setNome("Nazare salu");
-		autor.setEmail("nazare@gmail.com");
+		autor.setNome("salu figueira");
+		autor.setEmail("salu@gmail.com");
 		autor.setEditora(editora);
 		
 		if(autor.getId() == null){

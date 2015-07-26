@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import br.com.editora.dao.mapper.EditoraMapper;
+import br.com.editora.entity.Autor;
 import br.com.editora.entity.Editora;
 
 @Repository
@@ -37,10 +39,42 @@ public class EditoraDao {
 	private String SQL_UPDATE;
 	@Value("${sql.delete}")
 	private String SQL_DELETE;
+	@Value("${sql.findEditoraWithAutores}")
+	private String SQL_FIND_EDITORA_WITH_AUTORES;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	
+	public Editora findEditoraWithAutores(int idEditora){
+		
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+					SQL_FIND_EDITORA_WITH_AUTORES,
+					idEditora);
+		
+		Editora editora = null;
+		List<Autor> autores = new ArrayList<Autor>();
+		
+		for(Map row:rows){
+			if(editora == null){
+				editora = new Editora();
+				editora.setId((Integer) row.get("ID_EDITORA"));
+				editora.setRazaoSocial((String) row.get("RAZAO_SOCIAL"));
+				editora.setCidade((String) row.get("CIDADE"));
+				editora.setEmail((String) row.get("EMAIL"));
+			}
+			
+			Autor autor = new Autor();
+			autor.setId((Integer) row.get("ID_AUTOR"));
+			autor.setNome((String) row.get("NOME"));
+			autor.setEmail((String) row.get("AUTOR_EMAIL"));
+			
+			autores.add(autor);
+		}
+		editora.setAutores(autores);
+		
+		return editora;
+	}
 	
 	public int update(Editora editora){
 		
