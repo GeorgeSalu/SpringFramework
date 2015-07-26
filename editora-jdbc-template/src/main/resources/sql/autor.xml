@@ -3,6 +3,23 @@
 <properties>
 	<comment>SQL TABELA AUTORES</comment>
 	
+	<entry key="sql.autor.delete">
+		DELETE FROM AUTORES WHERE ID_AUTOR = ?
+	</entry>
+	
+	<entry key="sql.autor.update">
+		UPDATE
+			AUTORES
+		SET
+			NOME = ?, EMAIL = ?, ID_EDITORA = ?
+		WHERE
+			ID_AUTOR = ?
+	</entry>
+	
+	<entry key="sql.autor.findBy.id">
+		SELECT * FROM AUTORES WHERE ID_AUTOR = ?
+	</entry>
+	
 	<entry key="sql.autor.findAutoresBy.editora">
 		SELECT 
 			A.ID_AUTOR, A.NOME, A.EMAIL, A.ID_EDITORA,

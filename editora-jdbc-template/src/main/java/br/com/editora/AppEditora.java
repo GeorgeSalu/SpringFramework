@@ -51,9 +51,43 @@ public class AppEditora implements CommandLineRunner{
 		//execute();
 		//insertAutor();
 		//findAll();
-		findAutoresByEditora();
+		//findAutoresByEditora();
+		//updateAutor();
+		deleteAutor();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void deleteAutor() {
+
+		int ok = autorDao.delete(1);
+		
+		if(ok == 1){
+			System.out.println("Operacao realizada com sucesso");
+		}else{
+			System.out.println("Operacao nao realizada");
+		}
+		
+	}
+
+	private void updateAutor() {
+
+		Autor autor = autorDao.findById(1);
+		
+		Editora editora = new Editora();
+		editora.setId(2);
+		
+		autor.setEditora(editora);
+		
+		int ok = autorDao.update(autor);
+		
+		if(ok == 1){
+			autor = autorDao.findById(1);
+			System.out.println(autor.toString());
+		}else{
+			System.out.println("Operacao nao realizada");
+		}
+		
 	}
 
 	private void findAutoresByEditora() {

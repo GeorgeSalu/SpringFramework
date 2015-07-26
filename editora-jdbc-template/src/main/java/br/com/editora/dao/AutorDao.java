@@ -29,6 +29,32 @@ public class AutorDao {
 	private String SQL_FIND_ALL;
 	@Value("${sql.autor.findAutoresBy.editora}")
 	private String SQL_FIND_AUTORES_BY_EDITORA;
+	@Value("${sql.autor.update}")
+	private String SQL_UPDATE;
+	@Value("${sql.autor.findBy.id}")
+	private String SQL_FIND_BY_ID;
+	@Value("${sql.autor.delete}")
+	private String SQL_DELETE;
+	
+	public int delete(int id){
+		
+		return jdbcTemplate.update(SQL_DELETE,id);
+		
+	}
+	
+	public int update(Autor autor){
+		
+		return jdbcTemplate.update(
+				SQL_UPDATE, 
+				autor.getNome(),autor.getEmail(),autor.getEditora().getId(),autor.getId());
+		
+	}
+	
+	public Autor findById(int id){
+		
+		return jdbcTemplate.queryForObject(SQL_FIND_BY_ID, new AutorMapper(editoraDao),id);
+		
+	}
 	
 	public List<Autor> findAutoresByEditora(String razaoSocial){
 		
