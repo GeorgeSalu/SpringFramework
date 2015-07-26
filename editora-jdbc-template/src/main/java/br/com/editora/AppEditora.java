@@ -50,9 +50,20 @@ public class AppEditora implements CommandLineRunner{
 		//deleteEditora();
 		//execute();
 		//insertAutor();
-		findAll();
+		//findAll();
+		findAutoresByEditora();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findAutoresByEditora() {
+
+		List<Autor> autores = autorDao.findAutoresByEditora("Editora sul da Ltda.");
+		
+		for(Autor autor : autores){
+			System.out.println(autor.toString());
+		}
+		
 	}
 
 	private void findAll() {

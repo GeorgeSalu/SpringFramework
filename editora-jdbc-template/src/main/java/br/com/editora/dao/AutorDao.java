@@ -27,7 +27,17 @@ public class AutorDao {
 	private EditoraDao editoraDao;
 	@Value("${sql.autor.findAll}")
 	private String SQL_FIND_ALL;
+	@Value("${sql.autor.findAutoresBy.editora}")
+	private String SQL_FIND_AUTORES_BY_EDITORA;
 	
+	public List<Autor> findAutoresByEditora(String razaoSocial){
+		
+		return jdbcTemplate.query(
+				SQL_FIND_AUTORES_BY_EDITORA,
+				new AutorMapper().new AutorWithEditoraMapper(), 
+				razaoSocial);
+		
+	}
 	
 	public Autor save(Autor autor){
 		
