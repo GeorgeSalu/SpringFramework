@@ -1,11 +1,16 @@
 package br.com.editora.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Autor {
 
 	private Integer id;
 	private String nome;
 	private String email;
 	private Editora editora;
+
+	private List<Livro> livros = new ArrayList<Livro>();
 
 	public Integer getId() {
 		return id;
@@ -39,11 +44,18 @@ public class Autor {
 		this.editora = editora;
 	}
 
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
 	@Override
 	public String toString() {
 		return "Autor [id=" + id + ", nome=" + nome + ", email=" + email
 				+ ", editora=" + editora + "]";
 	}
 
-	
 }
