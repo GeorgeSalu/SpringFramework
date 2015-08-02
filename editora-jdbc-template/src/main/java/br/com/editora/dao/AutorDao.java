@@ -35,6 +35,8 @@ public class AutorDao {
 	private String SQL_FIND_BY_ID;
 	@Value("${sql.autor.delete}")
 	private String SQL_DELETE;
+	@Value("${sql.autor.getIdByNome}")
+	private String SQL_GET_ID_BY_NOME;
 	
 	public int delete(int id){
 		
@@ -95,7 +97,9 @@ public class AutorDao {
 								//.usingColumns("NOME","EMAIL","ID_EDITORA")
 								.usingGeneratedKeyColumns("ID_AUTOR");
 	}
-	
-	
+
+	public Integer getIdByNome(String nome) {
+		return jdbcTemplate.queryForObject(SQL_GET_ID_BY_NOME, Integer.class,nome);
+	}
 	
 }

@@ -11,9 +11,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 import br.com.editora.dao.AutorDao;
 import br.com.editora.dao.EditoraDao;
+import br.com.editora.dao.LivroAutorDao;
 import br.com.editora.dao.LivroDao;
 import br.com.editora.entity.Autor;
 import br.com.editora.entity.Editora;
+import br.com.editora.entity.Livro;
+import br.com.editora.entity.LivroAutor;
 
 @EnableAutoConfiguration
 @ComponentScan
@@ -23,6 +26,8 @@ public class AppEditora implements CommandLineRunner{
 	private EditoraDao editoraDao;
 	@Autowired
 	private LivroDao livroDao;
+	@Autowired
+	private LivroAutorDao livroAutorDao;
 	@Autowired
 	private AutorDao autorDao;
 	
@@ -54,10 +59,39 @@ public class AppEditora implements CommandLineRunner{
 		//findAutoresByEditora();
 		//updateAutor();
 		//deleteAutor();
-		findEditoraWithAutores();
+		//findEditoraWithAutores();
+		insertLivro();
 		
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void insertLivro() {
+		
+		String titulo = "Aprenda java";
+		int edicao = 1;
+		int paginas = 168;
+		String[] autores = {"George salu","Nazare salu"};
+		
+		Livro livro = new Livro();
+		livro.setTitulo(titulo);
+		livro.setEdicao(edicao);
+		livro.setPaginas(paginas);
+		
+		livro = livroDao.save(livro);
+		
+		Integer idLivro = livro.getId();
+		
+		for (String nome : autores) {
+			
+			System.out.println("nomes ===>  "+nome);
+			
+			Integer idAutor = autorDao.getIdByNome(nome);
+			
+			livroAutorDao.save(new LivroAutor(idLivro, idAutor));
+		}
+
+		
 	}
 
 	private void findEditoraWithAutores() {
@@ -175,11 +209,7 @@ public class AppEditora implements CommandLineRunner{
 		
 	}
 
-	private void execute() {
 
-	 livroDao.insert();
-	 
-	}
 
 	private void deleteEditora() {
 		
