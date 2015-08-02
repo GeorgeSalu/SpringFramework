@@ -60,10 +60,23 @@ public class AppEditora implements CommandLineRunner{
 		//updateAutor();
 		//deleteAutor();
 		//findEditoraWithAutores();
-		insertLivro();
+		//insertLivro();
+		findLivroWithAutores();
 		
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findLivroWithAutores() {
+		
+		Livro livro = livroDao.findLivroWithAutores(8);
+		
+		System.out.println(livro.toString());
+		
+		for(Autor autor : livro.getAutores()){
+			System.out.println(autor.toString());
+		}
+		
 	}
 
 	private void insertLivro() {
