@@ -61,10 +61,23 @@ public class AppEditora implements CommandLineRunner{
 		//deleteAutor();
 		//findEditoraWithAutores();
 		//insertLivro();
-		findLivroWithAutores();
+		//findLivroWithAutores();
+		findAutorWithLivros();
 		
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findAutorWithLivros() {
+
+		Autor autor = autorDao.findAutorWithLivros(3);
+		
+		System.out.println(autor.toString());
+		
+		for(Livro livro : autor.getLivros()){
+			System.out.println(livro.toString());
+		}
+		
 	}
 
 	private void findLivroWithAutores() {
@@ -81,10 +94,10 @@ public class AppEditora implements CommandLineRunner{
 
 	private void insertLivro() {
 		
-		String titulo = "Aprenda java";
+		String titulo = "Aprenda xamarin";
 		int edicao = 1;
 		int paginas = 168;
-		String[] autores = {"George salu","Nazare salu"};
+		String[] autores = {"George salu"};
 		
 		Livro livro = new Livro();
 		livro.setTitulo(titulo);
