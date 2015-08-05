@@ -20,4 +20,8 @@
 			L.ID_LIVRO = ?
 	</entry>
 	
+	<entry key="sql.livro.findByEdicao">
+		SELECT * FROM LIVROS WHERE EDICAO = :edicao
+	</entry>
+	
 </properties>

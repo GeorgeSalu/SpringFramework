@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import br.com.editora.dao.mapper.LivroMapper;
 import br.com.editora.entity.Autor;
 import br.com.editora.entity.Editora;
 import br.com.editora.entity.Livro;
@@ -20,11 +25,29 @@ import br.com.editora.entity.Livro;
 @PropertySource("classpath:sql/livro.xml")
 public class LivroDao {
 	
-	@Autowired
+	//@Autowired
 	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate namedParameter;
+	
+	@Autowired
+	public LivroDao(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.namedParameter = new NamedParameterJdbcTemplate(dataSource);
+	}
 	
 	@Value("${sql.livro.findLivroWithAutores}")
 	private String SQL_FIND_LIVRO_WITH_AUTORES;
+	@Value("${sql.livro.findByEdicao}")
+	private String SQL_FIND_BY_EDICAO;
+	
+	public List<Livro> findByEdicao(int edicao){
+		
+		return namedParameter.query(
+				SQL_FIND_BY_EDICAO, 
+				new MapSqlParameterSource("edicao", edicao),
+				new LivroMapper());
+		
+	}
 	
 	public Livro save(Livro livro) {
 		

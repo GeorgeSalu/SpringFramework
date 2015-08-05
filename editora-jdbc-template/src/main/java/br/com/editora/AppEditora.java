@@ -62,10 +62,21 @@ public class AppEditora implements CommandLineRunner{
 		//findEditoraWithAutores();
 		//insertLivro();
 		//findLivroWithAutores();
-		findAutorWithLivros();
+		//findAutorWithLivros();
+		findLivroByEdicao();
 		
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findLivroByEdicao() {
+		
+		List<Livro> livros = livroDao.findByEdicao(1);
+		
+		for(Livro l: livros){
+			System.out.println(l.toString());
+		}
+		
 	}
 
 	private void findAutorWithLivros() {
