@@ -24,4 +24,17 @@
 		SELECT * FROM LIVROS WHERE EDICAO = :edicao
 	</entry>
 	
+	<entry key="sql.livro.findByPaginas">
+		SELECT * FROM LIVROS WHERE PAGINAS BETWEEN :minimo  AND :maximo
+	</entry>
+	
+	<entry key="sql.livro.update">
+		UPDATE
+			LIVROS
+		SET
+			TITULO = :titulo, EDICAO = :edicao, PAGINAS = :paginas
+		WHERE
+			ID_LIVRO = :id
+	</entry>
+	
 </properties>

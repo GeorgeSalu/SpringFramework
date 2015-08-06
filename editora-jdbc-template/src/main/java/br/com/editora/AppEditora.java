@@ -63,10 +63,43 @@ public class AppEditora implements CommandLineRunner{
 		//insertLivro();
 		//findLivroWithAutores();
 		//findAutorWithLivros();
-		findLivroByEdicao();
-		
+		//findLivroByEdicao();
+		//findLivrosByPaginas();
+		updateLivro();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void updateLivro() {
+		
+		Livro livro = livroDao.findLivroWithAutores(8);
+		System.out.println(livro.toString());
+		
+		
+		livro.setTitulo("Aprenda Liferay");
+		livro.setPaginas(100);
+		
+		int ok = livroDao.update(livro);
+		
+		if (ok == 1) {
+			
+			livro = livroDao.findLivroWithAutores(8);
+			System.out.println(livro.toString());
+			
+		}else{
+			System.out.println("Operacao nao realizada");
+		}
+		
+	}
+
+	private void findLivrosByPaginas() {
+
+		List<Livro> livros = livroDao.findByPaginas(168,168);
+		
+		for(Livro livro : livros){
+			System.out.println(livro.toString());
+		}
+		
 	}
 
 	private void findLivroByEdicao() {
