@@ -44,6 +44,30 @@ public class LivroDao {
 	private String SQL_FIND_BY_PAGINAS;
 	@Value("${sql.livro.update}")
 	private String SQL_UPDATE;
+	@Value("${sql.livro.findByTituloAndEdicao}")
+	private String SQL_FIND_BY_TITULO_AND_EDICAO;
+	
+	
+	public int alter(Livro livro){
+		
+		return namedParameter.update(SQL_UPDATE, 
+								new BeanPropertySqlParameterSource(livro));
+		
+	}
+	
+	
+	public Livro findByTituloAndEdicao(String titulo,int edicao){
+		
+		Livro livro = new Livro();
+		livro.setTitulo(titulo);
+		livro.setEdicao(edicao);
+		
+		return namedParameter.queryForObject(
+							SQL_FIND_BY_TITULO_AND_EDICAO, 
+							new BeanPropertySqlParameterSource(livro),
+							new LivroMapper());
+		
+	}
 	
 	
 	public List<Livro> findByPaginas(int min,int max){

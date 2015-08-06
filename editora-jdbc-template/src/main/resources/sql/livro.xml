@@ -37,4 +37,9 @@
 			ID_LIVRO = :id
 	</entry>
 	
+	<entry key="sql.livro.findByTituloAndEdicao">
+		SELECT * FROM LIVROS
+		WHERE TITULO LIKE :titulo AND EDICAO = :edicao 
+	</entry>
+	
 </properties>

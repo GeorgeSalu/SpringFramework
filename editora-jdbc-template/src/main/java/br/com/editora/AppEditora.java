@@ -65,9 +65,18 @@ public class AppEditora implements CommandLineRunner{
 		//findAutorWithLivros();
 		//findLivroByEdicao();
 		//findLivrosByPaginas();
-		updateLivro();
+		//updateLivro();
+		findLivroByTituloEdicao();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findLivroByTituloEdicao() {
+
+		Livro livro = livroDao.findByTituloAndEdicao("Aprenda groovy", 1);
+
+		System.out.println(livro.toString());
+		
 	}
 
 	private void updateLivro() {
@@ -76,10 +85,11 @@ public class AppEditora implements CommandLineRunner{
 		System.out.println(livro.toString());
 		
 		
-		livro.setTitulo("Aprenda Liferay");
+		livro.setTitulo("Aprenda Liferay MVC");
 		livro.setPaginas(100);
 		
-		int ok = livroDao.update(livro);
+		//int ok = livroDao.update(livro);
+		int ok = livroDao.alter(livro);
 		
 		if (ok == 1) {
 			
