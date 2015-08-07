@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-import scala.annotation.meta.getter;
 import br.com.editora.dao.AutorDao;
 import br.com.editora.dao.EditoraDao;
 import br.com.editora.dao.LivroAutorDao;
@@ -70,9 +69,18 @@ public class AppEditora implements CommandLineRunner{
 		//updateLivro();
 		//findLivroByTituloEdicao();
 		//procedureUpperCase();
-		procedureInfo();
+		//procedureInfo();
+		functionAutorLivro();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void functionAutorLivro() {
+
+		String texto = livroDao.callFunctionTotalLivrosByAutor(3);
+		
+		System.out.println(texto.toString());
+		
 	}
 
 	private void procedureInfo() {

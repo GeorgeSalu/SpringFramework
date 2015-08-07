@@ -77,6 +77,14 @@ public class LivroDao {
 		return Arrays.asList(titulo,autor,editora);
 	}
 	
+	public String callFunctionTotalLivrosByAutor(int idAutor){
+		
+		simpleJdbcCall.withFunctionName("function_conta_livros_autor");
+		
+		String texto = simpleJdbcCall.executeFunction(String.class, idAutor);
+		
+		return texto;
+	}
 	
 	public int alter(Livro livro){
 		
