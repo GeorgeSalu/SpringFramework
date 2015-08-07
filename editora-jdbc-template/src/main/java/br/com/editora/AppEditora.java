@@ -2,6 +2,7 @@ package br.com.editora;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
+import scala.annotation.meta.getter;
 import br.com.editora.dao.AutorDao;
 import br.com.editora.dao.EditoraDao;
 import br.com.editora.dao.LivroAutorDao;
@@ -66,9 +68,29 @@ public class AppEditora implements CommandLineRunner{
 		//findLivroByEdicao();
 		//findLivrosByPaginas();
 		//updateLivro();
-		findLivroByTituloEdicao();
+		//findLivroByTituloEdicao();
+		//procedureUpperCase();
+		procedureInfo();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void procedureInfo() {
+		
+		List<String> retorno = livroDao.callProcedureInfoLivro(1);
+		
+		System.out.println(retorno.toString());
+		
+	}
+
+	private void procedureUpperCase() {
+
+		Map<String,Object> map = livroDao.callProcedureUppercaseTitulo(1);
+		
+		for(Map.Entry<String,Object> kv: map.entrySet()){
+			System.out.println(kv.getKey() + "\n"+kv.getValue());
+		}
+		
 	}
 
 	private void findLivroByTituloEdicao() {
