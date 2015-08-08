@@ -70,9 +70,31 @@ public class AppEditora implements CommandLineRunner{
 		//findLivroByTituloEdicao();
 		//procedureUpperCase();
 		//procedureInfo();
-		functionAutorLivro();
+		//functionAutorLivro();
+		insertBatchEditoras();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void insertBatchEditoras() {
+		
+		List<Editora> editoras = new ArrayList<Editora>();
+		editoras.add(new Editora("Editora Lobo", "Sao paulo", "sa@.com"));
+		editoras.add(new Editora("Editora Lobo 2", "Sao paulo 2", "sa2@.com"));
+		editoras.add(new Editora("Editora Lobo 3", "Sao paulo 3", "sa3@.com"));
+		
+		editoraDao.saveBatch(editoras);
+		
+		findAllEditoras();
+		
+		editoras = new ArrayList<Editora>();
+		editoras.add(new Editora("Editora Lobo 4", "Sao paulo 4", "sa4@.com"));
+		editoras.add(new Editora("Editora Lobo 5", "Sao paulo 5", "sa5@.com"));
+		editoras.add(new Editora("Editora Lobo 6", "Sao paulo 6", "sa6@.com"));
+		
+		editoraDao.insertBacth(editoras);
+		
+		findAllEditoras();
 	}
 
 	private void functionAutorLivro() {

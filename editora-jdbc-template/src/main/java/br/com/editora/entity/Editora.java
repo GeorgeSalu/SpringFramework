@@ -11,7 +11,17 @@ public class Editora {
 	private String email;
 
 	private List<Autor> autores = new ArrayList<Autor>();
+
+	public Editora() {
+		// TODO Auto-generated constructor stub
+	}
 	
+	public Editora(String razaoSocial, String cidade, String email) {
+		this.razaoSocial = razaoSocial;
+		this.cidade = cidade;
+		this.email = email;
+	}
+
 	public Integer getId() {
 		return id;
 	}
