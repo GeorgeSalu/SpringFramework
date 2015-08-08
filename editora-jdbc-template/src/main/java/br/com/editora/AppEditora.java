@@ -1,6 +1,7 @@
 package br.com.editora;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -71,9 +72,38 @@ public class AppEditora implements CommandLineRunner{
 		//procedureUpperCase();
 		//procedureInfo();
 		//functionAutorLivro();
-		insertBatchEditoras();
+		//insertBatchEditoras();
+		//updateBatchAutores();
+		deleteBatchAutores();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void deleteBatchAutores() {
+		
+		autorDao.deleteBatch(Arrays.asList(8,9,10));
+		
+	}
+
+	private void updateBatchAutores() {
+
+		Autor a1 = autorDao.findById(8);
+		System.out.println(a1.toString());
+		a1.setNome("--GEORGE SALU--");
+		
+		Autor a2 = autorDao.findById(9);
+		System.out.println(a2.toString());
+		a2.setNome("--GEORGE SALU 2--");
+		
+		Autor a3 = autorDao.findById(10);
+		System.out.println(a3.toString());
+		a3.setNome("--GEORGE SALU 3--");
+		
+		
+		autorDao.updateBatch(Arrays.asList(a1,a2,a3));
+		
+		findAll();
+		
 	}
 
 	private void insertBatchEditoras() {
