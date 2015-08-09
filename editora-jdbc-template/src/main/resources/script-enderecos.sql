@@ -1,0 +1,10 @@
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (1,'Rua das Oliveiras',150,'porto alegre',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (2,'Rua das Oliveiras 2',152,'porto alegre 2',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (3,'Rua das Oliveiras 3',153,'porto alegre 3',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (4,'Rua das Oliveiras 4',154,'porto alegre 4',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (5,'Rua das Oliveiras 5',155,'porto alegre 5',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (6,'Rua das Oliveiras 6',156,'porto alegre 6',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (7,'Rua das Oliveiras 7',157,'porto alegre 7',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (8,'Rua das Oliveiras 8',158,'porto alegre 8',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (9,'Rua das Oliveiras 9',159,'porto alegre 9',3);
+insert into ENDERECOS (id_endereco,logradouro,numero,cidade,id_autor) values (10,'Rua das Oliveiras 10',160,'porto alegre 10',3);

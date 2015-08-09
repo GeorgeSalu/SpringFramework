@@ -13,10 +13,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 import br.com.editora.dao.AutorDao;
 import br.com.editora.dao.EditoraDao;
+import br.com.editora.dao.EnderecoDao;
 import br.com.editora.dao.LivroAutorDao;
 import br.com.editora.dao.LivroDao;
 import br.com.editora.entity.Autor;
 import br.com.editora.entity.Editora;
+import br.com.editora.entity.Endereco;
 import br.com.editora.entity.Livro;
 import br.com.editora.entity.LivroAutor;
 
@@ -32,6 +34,8 @@ public class AppEditora implements CommandLineRunner{
 	private LivroAutorDao livroAutorDao;
 	@Autowired
 	private AutorDao autorDao;
+	@Autowired
+	private EnderecoDao enderecoDao;
 	
 	public static void main(String[] args) {
 
@@ -74,9 +78,20 @@ public class AppEditora implements CommandLineRunner{
 		//functionAutorLivro();
 		//insertBatchEditoras();
 		//updateBatchAutores();
-		deleteBatchAutores();
+		//deleteBatchAutores();
+		findAllEnderecos();
 		
 		System.out.println("--------------------------------");
+	}
+
+	private void findAllEnderecos() {
+		
+		List<Endereco> enderecos = enderecoDao.findAll();
+		
+		for(Endereco endereco:enderecos){
+			System.out.println(endereco.toString());
+		}
+		
 	}
 
 	private void deleteBatchAutores() {
