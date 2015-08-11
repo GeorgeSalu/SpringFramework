@@ -20,7 +20,7 @@ public class WebXmlConfig implements WebApplicationInitializer{
 		webContext.setServletContext(servletContext);
 		
 		ServletRegistration.Dynamic reDynamic = 
-				servletContext.addServlet("dispacher", new DispatcherServlet());
+				servletContext.addServlet("dispacher", new DispatcherServlet(webContext));
 		
 		reDynamic.setLoadOnStartup(1);
 		reDynamic.addMapping("/");
