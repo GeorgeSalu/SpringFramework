@@ -32,8 +32,8 @@ public class DepartamentoDao extends GenericDao<Departamento> {
 	
 	public int update(Departamento departamento){
 		String sql = "UPDATE departamentos "
-				+ "SET departamento =: departamento "
-				+ "WHERE id_departamento =: idDepartamento";
+				+ "SET departamento = :departamento "
+				+ "WHERE id_departamento = :idDepartamento";
 		return update(sql, parameterSource(departamento));
 	}
 
