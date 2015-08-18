@@ -9,6 +9,9 @@
 <title>Departamento</title>
 </head>
 <body>
+
+	<c:import url="menu.jsp"></c:import>
+
 	<c:url var="save" value="/departamento/save"></c:url>
 	<form:form modelAttribute="departamento" action="${save}" method="post" >
 		<form:hidden path="idDepartamento"/>
