@@ -5,6 +5,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,11 @@ public class DepartamentoDao extends GenericDao<Departamento> {
 	@Override
 	public SqlParameterSource parameterSource(Departamento departamento) {
 		return new BeanPropertySqlParameterSource(departamento);
+	}
+
+	@Override
+	protected RowMapper<Departamento> rowMapper() {
+		return new BeanPropertyRowMapper<Departamento>(Departamento.class);
 	}
 	
 	public Departamento save(Departamento departamento){
@@ -44,12 +51,14 @@ public class DepartamentoDao extends GenericDao<Departamento> {
 	
 	public Departamento findById(Integer id){
 		String sql = "SELECT * FROM departamentos WHERE id_departamento = ?";
-		return findById(sql, id);
+		return findById(sql, id, rowMapper());
 	}
 	
 	public List<Departamento> findAll(){
 		String sql = "SELECT * FROM departamentos";
-		return findAll(sql);
+		return findAll(sql,rowMapper());
 	}
+
+
 	
 }
