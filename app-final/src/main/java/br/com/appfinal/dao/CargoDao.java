@@ -18,11 +18,12 @@ import br.com.appfinal.entity.Departamento;
 @Repository
 public class CargoDao extends GenericDao<Cargo>{
 
-	@Autowired
 	private DepartamentoDao departamentoDao;
 	
-	public CargoDao(DataSource dataSource) {
+	@Autowired
+	public CargoDao(DataSource dataSource,DepartamentoDao departamentoDao) {
 		super(dataSource, Cargo.class);
+		this.departamentoDao = departamentoDao;
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class CargoDao extends GenericDao<Cargo>{
 	}
 	
 	public Cargo save(Cargo cargo){
-		Number key = super.save("CARGO","ID_CARGO", parameterSource(cargo));
+		Number key = super.save("CARGOS","ID_CARGO", parameterSource(cargo));
 		cargo.setIdCargo(key.intValue());
 		return cargo;
 	}

@@ -25,7 +25,7 @@
 			<div>
 				<form:label path="cargo">Cargo</form:label><br/>
 				<form:select path="departamento" required="true">
-					<form:option value="0" label="---- Select ----"></form:option>
+					<form:option value="" label="---- Select ----"></form:option>
 					<form:options items="${departamentos}" 
 									itemValue="idDepartamento" 
 									itemLabel="departamento"/>
