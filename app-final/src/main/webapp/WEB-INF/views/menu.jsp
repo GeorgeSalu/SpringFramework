@@ -9,4 +9,8 @@
 	<li>
 		<a href="${cargoAdd}" title="Cargo">Cargo</a>
 	</li>
+	<c:url var="funcAdd" value="/funcionario/add"></c:url>
+	<li>
+		<a href="${funcAdd}" title="Funcionários">Funcionarios</a>
+	</li>
 </ul>
