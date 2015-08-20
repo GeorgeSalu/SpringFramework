@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import br.com.appfinal.entity.Cargo;
 import br.com.appfinal.entity.Endereco;
 import br.com.appfinal.entity.Funcionario;
 
+@Repository
 public class FuncionarioDao extends GenericDao<Funcionario>{
 
 	private CargoDao cargoDao;

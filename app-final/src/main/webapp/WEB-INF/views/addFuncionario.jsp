@@ -7,6 +7,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Funcionarios</title>
+<style type="text/css">
+	.master{
+		width: 960px;margin: 0 auto;
+	}
+	.campo{
+		margin-bottom: 1em;
+	}
+	
+	.campo input:focus, .campo select:focus{
+		background: #f8f8f8;
+	}
+	
+	fieldset.grupo .campo{
+		float: left;
+		margin-left: 2em;
+	}
+</style>
 </head>
 <body>
 

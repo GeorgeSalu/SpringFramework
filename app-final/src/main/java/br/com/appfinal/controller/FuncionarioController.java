@@ -47,6 +47,8 @@ public class FuncionarioController {
 	
 	@RequestMapping(value="/save")
 	public String save(@ModelAttribute("funcionario") Funcionario funcionario){
+
+		funcionarioService.saveOrUpdate(funcionario);
 		
 		return "redirect:/funcionario/add";
 	}
