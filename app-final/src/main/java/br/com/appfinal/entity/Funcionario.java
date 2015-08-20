@@ -1,13 +1,14 @@
 package br.com.appfinal.entity;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Funcionario {
 
 	private Integer idFuncionario;
 	private String nome;
-	private Calendar dataEntrada;
-	private Calendar dataSaida;
+	private Date dataEntrada;
+	private Date dataSaida;
 	private Double salario;
 	private Cargo cargo;
 	private Endereco endereco;
@@ -28,19 +29,19 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
-	public Calendar getDataEntrada() {
+	public Date getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Calendar dataEntrada) {
+	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
-	public Calendar getDataSaida() {
+	public Date getDataSaida() {
 		return dataSaida;
 	}
 
-	public void setDataSaida(Calendar dataSaida) {
+	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
 
