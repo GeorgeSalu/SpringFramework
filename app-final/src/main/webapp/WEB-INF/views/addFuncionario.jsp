@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
@@ -119,9 +120,20 @@
 			<tr>
 				<th>${f.idFuncionario }</th>
 				<th>${f.nome }</th>
-				<th>${f.salario }</th>
-				<th>${f.dataEntrada }</th>
-				<th>${f.dataSaida }</th>
+				<th>
+					<fmt:formatNumber value="${f.salario }" currencySymbol="R$" 
+							maxFractionDigits="2" pattern="###,###.00"/>
+				</th>
+				<th>
+					<fmt:parseDate var="dtEntrada" value="${f.dataEntrada }" 
+							pattern="yyyy-MM-dd" />
+					<fmt:formatDate value="${dtEntrada }"/>
+				</th>
+				<th>
+					<fmt:parseDate var="dtSaida" value="${f.dataSaida }" 
+							pattern="yyyy-MM-dd" />
+					<fmt:formatDate value="${dtSaida }"/>
+				</th>
 				<th>${f.cargo.cargo }</th>
 				<th>
 					

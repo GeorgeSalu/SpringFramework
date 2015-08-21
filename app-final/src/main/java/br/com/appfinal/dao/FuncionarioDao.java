@@ -89,7 +89,7 @@ public class FuncionarioDao extends GenericDao<Funcionario>{
 			dataSaida = "data_saida = :dataSaida, ";
 		}
 		
-		String sql = "UPDATE funcionario "
+		String sql = "UPDATE funcionarios "
 				+ "SET "+dataSaida
 				+ "nome = :nome, salario = :salario, id_cargo = :idCargo, id_endereco = :idEndereco, data_entrada = :dataEntrada "
 				+ "WHERE id_funcionario = :idFuncionario";

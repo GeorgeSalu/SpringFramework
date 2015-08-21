@@ -65,7 +65,11 @@ public class FuncionarioController {
 	
 	@RequestMapping(value="/delete/{id}")
 	public String delete(@PathVariable("id") Integer id){
-		funcionarioService.delete(id);
+		
+		Funcionario f = funcionarioService.findById(id);
+		
+		enderecoService.delete(f.getEndereco().getIdEndereco());
+		
 		return "redirect:/funcionario/add";
 	}
 	
