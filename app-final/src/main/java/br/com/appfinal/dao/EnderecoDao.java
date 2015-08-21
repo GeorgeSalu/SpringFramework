@@ -41,7 +41,7 @@ public class EnderecoDao extends GenericDao<Endereco>{
 		String sql = "UPDATE enderecos "
 				+ "SET logradouro = :logradouro, numero = :numero, "
 				+ "complemento = :complemento, estado = :estado, bairro = :bairro, "
-				+ "cidade = :cidade"
+				+ "cidade = :cidade "
 				+ "WHERE id_endereco =: idEndereco ";
 		return super.update(sql, parameterSource(endereco));
 	}

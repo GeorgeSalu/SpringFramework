@@ -55,8 +55,12 @@ public class FuncionarioController {
 	
 	@RequestMapping(value="/update/{id}")
 	public ModelAndView preUpdate(@PathVariable("id") Integer id,ModelMap model){
+
+		model.addAttribute("funcionario", funcionarioService.findById(id));
+		model.addAttribute("funcionarios", funcionarioService.findAll());
+		model.addAttribute("cargos", cargoService.findAll());
 		
-		return new ModelAndView();
+		return new ModelAndView("addFuncionario");
 	}
 	
 	@RequestMapping(value="/delete/{id}")

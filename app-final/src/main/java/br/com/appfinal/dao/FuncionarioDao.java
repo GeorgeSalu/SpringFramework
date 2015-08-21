@@ -82,9 +82,16 @@ public class FuncionarioDao extends GenericDao<Funcionario>{
 	}
 	
 	public int update(Funcionario funcionario){
+
+		String dataSaida = "";
+		
+		if(funcionario.getDataSaida() != null){
+			dataSaida = "data_saida = :dataSaida, ";
+		}
+		
 		String sql = "UPDATE funcionario "
-				+ "SET nome = :nome, salario = :salario, id_cargo = :idCargo, id_endereco = :idEndereco, data_entrada = :dataEntrada,"
-				+ "data_saida = :dataSaida "
+				+ "SET "+dataSaida
+				+ "nome = :nome, salario = :salario, id_cargo = :idCargo, id_endereco = :idEndereco, data_entrada = :dataEntrada "
 				+ "WHERE id_funcionario = :idFuncionario";
 		
 		return super.update(sql, parameterSource(funcionario));
