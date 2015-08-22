@@ -45,4 +45,10 @@ public class FuncionarioService {
 	public List<Funcionario> findAll(){
 		return dao.findAll();
 	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Funcionario> findByCargo(Integer idCargo){
+		return dao.findByCargo(idCargo);
+	}
+	
 }

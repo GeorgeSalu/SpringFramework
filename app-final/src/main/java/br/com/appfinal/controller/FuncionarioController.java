@@ -73,4 +73,15 @@ public class FuncionarioController {
 		return "redirect:/funcionario/add";
 	}
 	
+	@RequestMapping(value= "/find/cargo/{idCargo}", method = RequestMethod.GET)
+	public ModelAndView findByCargo(@PathVariable("idCargo") Integer idCargo,
+						@ModelAttribute("funcionario") Funcionario funcionario,
+						ModelMap model){
+		
+		model.addAttribute("funcionarios", funcionarioService.findByCargo(idCargo));
+		model.addAttribute("cargos", cargoService.findAll());
+		
+		return new ModelAndView("addFuncionario",model);
+	}
+	
 }

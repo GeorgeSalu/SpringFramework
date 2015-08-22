@@ -112,4 +112,9 @@ public class FuncionarioDao extends GenericDao<Funcionario>{
 		return super.findAll(sql, rowMapper());
 	}
 	
+	public List<Funcionario> findByCargo(Integer idCargo){
+		String sql = "select * from funcionarios where id_cargo = :idCargo";
+		return namedQuery().query(sql, new MapSqlParameterSource("idCargo", idCargo),rowMapper());
+	}
+	
 }
