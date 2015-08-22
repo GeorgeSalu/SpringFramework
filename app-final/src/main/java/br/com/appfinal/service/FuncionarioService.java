@@ -51,4 +51,9 @@ public class FuncionarioService {
 		return dao.findByCargo(idCargo);
 	}
 	
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Funcionario> findByNome(String nome){
+		return dao.findByNome(nome);
+	}
+	
 }

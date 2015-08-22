@@ -117,4 +117,9 @@ public class FuncionarioDao extends GenericDao<Funcionario>{
 		return namedQuery().query(sql, new MapSqlParameterSource("idCargo", idCargo),rowMapper());
 	}
 	
+	public List<Funcionario> findByNome(String nome){
+		String sql = "select * from funcionarios where nome like :nome";
+		return namedQuery().query(sql, new MapSqlParameterSource("nome","%"+nome+"%"),rowMapper());
+	}
+	
 }

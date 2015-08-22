@@ -84,4 +84,15 @@ public class FuncionarioController {
 		return new ModelAndView("addFuncionario",model);
 	}
 	
+	@RequestMapping(value="/find/nome/{nome}")
+	public ModelAndView findByNome(@PathVariable("nome") String nome,
+			@ModelAttribute("funcionario") Funcionario funcionario,
+			ModelMap model){
+		
+		model.addAttribute("funcionarios", funcionarioService.findByNome(nome) );
+		model.addAttribute("cargos", cargoService.findAll());
+		
+		return new ModelAndView("addFuncionario",model);
+	}
+	
 }

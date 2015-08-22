@@ -39,6 +39,18 @@
 		}
 		
 	}
+	
+	function localizaPorNome(){
+	
+		var value = document.getElementById("nomea").value;
+	
+		if(value == ''){
+			window.location = 'http://localhost:8080/app-final/funcionario/add';
+		}else{
+			window.location = 'http://localhost:8080/app-final/funcionario/find/nome/'+value;
+		}
+	
+	}
 </script>
 
 </head>
@@ -54,7 +66,7 @@
 				<legend>Funcionario</legend>
 				<div class="campo">
 					<form:label path="nome">Nome</form:label><br/>
-					<form:input path="nome" type="text" size="40"></form:input>
+					<form:input path="nome" type="text" size="40" id="nome"></form:input>
 				</div>
 				<div class="campo">
 					<form:label path="salario">Salario</form:label><br/>
@@ -68,7 +80,7 @@
 					<form:label path="dataSaida">Data de Saida</form:label><br/>
 					<form:input path="dataSaida" type="date"></form:input>
 				</div>
-				
+				<input type="button" value="Localizar" onclick="localizarPorNome();">
 				<fieldset class="grupo">
 					<legend>Cargo</legend>
 					<div class="campo">
