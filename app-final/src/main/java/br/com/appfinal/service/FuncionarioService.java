@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.appfinal.dao.FuncionarioDao;
 import br.com.appfinal.entity.Endereco;
 import br.com.appfinal.entity.Funcionario;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class FuncionarioService {
 
 	@Autowired
@@ -33,10 +36,12 @@ public class FuncionarioService {
 		dao.delete(id);
 	}
 	
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Funcionario findById(Integer id){
 		return dao.findById(id);
 	}
 	
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Funcionario> findAll(){
 		return dao.findAll();
 	}
