@@ -64,6 +64,15 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<div align="center">
+			<c:if test="${current != 1 }">
+				<a href="<c:url value= "/cargo/page/${current-1 }"/>">&laquo</a>
+			</c:if>	
+			${current }
+			<c:if test="${current >= 1 && (current+1) <= total }">
+				<a href="<c:url value= "/cargo/page/${current+1 }"/>">&raquo</a>
+			</c:if>
+		</div>
 	</fieldset>
 </body>
 </html>

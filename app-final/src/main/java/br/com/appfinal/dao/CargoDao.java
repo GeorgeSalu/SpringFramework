@@ -82,5 +82,11 @@ public class CargoDao extends GenericDao<Cargo>{
 		String sql = "SELECT * FROM cargos";
 		return super.findAll(sql, rowMapper());
 	}
+
+	public List<Cargo> findByPage(int page,int size){
+		return namedQuery().query("select * from cargos limit :page, :size", 
+				new MapSqlParameterSource("page",page).addValue("size", size),
+				rowMapper());
+	}
 	
 }
