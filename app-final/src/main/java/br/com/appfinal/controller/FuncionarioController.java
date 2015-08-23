@@ -1,8 +1,11 @@
 package br.com.appfinal.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +20,14 @@ import br.com.appfinal.entity.Funcionario;
 import br.com.appfinal.service.CargoService;
 import br.com.appfinal.service.EnderecoService;
 import br.com.appfinal.service.FuncionarioService;
+import br.com.appfinal.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping("funcionario")
 public class FuncionarioController {
 
+	private static Logger logger = Logger.getLogger(FuncionarioController.class);
+	
 	@Autowired
 	private FuncionarioService funcionarioService;
 	@Autowired
@@ -32,6 +38,7 @@ public class FuncionarioController {
 	@InitBinder
 	protected void initBinder(ServletRequestDataBinder binder){
 		binder.registerCustomEditor(Cargo.class, new CargoEditorSupport(cargoService));
+		binder.addValidators(new FuncionarioValidator());
 	}
 	
 	
@@ -46,11 +53,29 @@ public class FuncionarioController {
 	}
 	
 	@RequestMapping(value="/save")
-	public String save(@ModelAttribute("funcionario") Funcionario funcionario){
+	public ModelAndView save(@ModelAttribute("funcionario") @Validated Funcionario funcionario,
+			BindingResult result,ModelMap model){
 
-		funcionarioService.saveOrUpdate(funcionario);
 		
-		return "redirect:/funcionario/add";
+		if(result.hasErrors()){
+			logger.warn("Foram encontrados campos invalidos");
+			model.addAttribute("funcionarios", funcionarioService.findAll());
+			model.addAttribute("cargos", cargoService.findAll());
+			return new ModelAndView("addFuncionario",model);
+		}
+		
+		
+		try {
+			logger.info("executando saveOrUpdate para funcionario");
+			
+			funcionarioService.saveOrUpdate(funcionario);
+		
+			logger.info("Operacao realizada com sucesso");
+		} catch (Exception e) {
+			logger.error("Um error ao inserir/alterar um funcionario "+e);
+		}
+		
+		return new ModelAndView("redirect:/funcionario/add");
 	}
 	
 	@RequestMapping(value="/update/{id}")
