@@ -8,50 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Funcionarios</title>
-<style type="text/css">
-	.master{
-		width: 960px;margin: 0 auto;
-	}
-	.campo{
-		margin-bottom: 1em;
-	}
-	
-	.campo input:focus, .campo select:focus{
-		background: #f8f8f8;
-	}
-	
-	fieldset.grupo .campo{
-		float: left;
-		margin-left: 2em;
-	}
-</style>
 
-<script type="text/javascript">
-	function localizarPorCargo(){
-		
-		var id = document.getElementById("cargo");
-		var value = id.options[id.selectedIndex].value;
-		
-		if(value == ''){
-			window.location = 'http://localhost:8080/app-final/funcionario/add';
-		}else{
-			window.location = 'http://localhost:8080/app-final/funcionario/find/cargo/'+value;
-		}
-		
-	}
-	
-	function localizaPorNome(){
-	
-		var value = document.getElementById("nomea").value;
-	
-		if(value == ''){
-			window.location = 'http://localhost:8080/app-final/funcionario/add';
-		}else{
-			window.location = 'http://localhost:8080/app-final/funcionario/find/nome/'+value;
-		}
-	
-	}
-</script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
+<script type="text/javascript" src="<c:url value="/js/function.js" />"></script>
 
 </head>
 <body>
