@@ -16,7 +16,7 @@ public class Funcionario {
 	private Date dataEntrada;
 	@DateTimeFormat(iso=ISO.DATE,pattern="yyyy-MM-dd")
 	private Date dataSaida;
-	@NumberFormat(style=Style.CURRENCY,pattern="###,###.00")
+	//@NumberFormat(style=Style.CURRENCY,pattern="###,###.00")
 	private Double salario;
 	private Cargo cargo;
 	private Endereco endereco;

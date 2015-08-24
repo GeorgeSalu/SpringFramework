@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.appfinal.editor.CargoEditorSupport;
+import br.com.appfinal.editor.StringToDoubleEditorSupport;
+import br.com.appfinal.editor.StringToIntegerEditorSupport;
 import br.com.appfinal.entity.Cargo;
 import br.com.appfinal.entity.Funcionario;
 import br.com.appfinal.service.CargoService;
@@ -39,6 +41,10 @@ public class FuncionarioController {
 	@InitBinder
 	protected void initBinder(ServletRequestDataBinder binder){
 		binder.registerCustomEditor(Cargo.class, new CargoEditorSupport(cargoService));
+	
+		binder.registerCustomEditor(Integer.class, "endereco.numero",new StringToIntegerEditorSupport());
+		binder.registerCustomEditor(Double.class, "salario",new StringToDoubleEditorSupport());
+		
 		binder.addValidators(new FuncionarioValidator(new EnderecoValidator()));
 	}
 	
