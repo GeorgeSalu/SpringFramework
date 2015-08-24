@@ -20,6 +20,7 @@ import br.com.appfinal.entity.Funcionario;
 import br.com.appfinal.service.CargoService;
 import br.com.appfinal.service.EnderecoService;
 import br.com.appfinal.service.FuncionarioService;
+import br.com.appfinal.validator.EnderecoValidator;
 import br.com.appfinal.validator.FuncionarioValidator;
 
 @Controller
@@ -38,7 +39,7 @@ public class FuncionarioController {
 	@InitBinder
 	protected void initBinder(ServletRequestDataBinder binder){
 		binder.registerCustomEditor(Cargo.class, new CargoEditorSupport(cargoService));
-		binder.addValidators(new FuncionarioValidator());
+		binder.addValidators(new FuncionarioValidator(new EnderecoValidator()));
 	}
 	
 	

@@ -63,26 +63,32 @@
 					<div class="campo">
 						<form:label path="endereco.logradouro">Logradouro</form:label>
 						<form:input path="endereco.logradouro" type="text" size="30"/>
+						<form:errors cssClass="error" path="endereco.logradouro" element="div" />
 					</div>
 					<div class="campo">
 						<form:label path="endereco.numero">Numero</form:label>
 						<form:input path="endereco.numero" type="text" size="30"/>
+						<form:errors cssClass="error" path="endereco.numero" element="div" />
 					</div>
 					<div class="campo">
 						<form:label path="endereco.complemento">Complemento</form:label>
 						<form:input path="endereco.complemento" type="text" size="30"/>
+						<div></div>
 					</div>
 					<div class="campo">
 						<form:label path="endereco.bairro">Bairro</form:label>
 						<form:input path="endereco.bairro" type="text" size="30"/>
+						<form:errors cssClass="error" path="endereco.bairro" element="div" />
 					</div>
 					<div class="campo">
 						<form:label path="endereco.cidade">Cidade</form:label>
 						<form:input path="endereco.cidade" type="text" size="30"/>
+						<form:errors cssClass="error" path="endereco.cidade" element="div" />
 					</div>
 					<div class="campo">
 						<form:label path="endereco.estado">Estado</form:label>
 						<form:input path="endereco.estado" type="text" size="30"/>
+						<form:errors cssClass="error" path="endereco.estado" element="div" />
 					</div>
 				</fieldset>
 				
